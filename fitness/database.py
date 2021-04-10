@@ -1,5 +1,5 @@
 from datetime import datetime
-from fit_trek import db, login_manager
+from fitness import db, login_manager
 from flask_login import UserMixin
 
 

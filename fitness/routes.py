@@ -1,9 +1,9 @@
 from flask import redirect, url_for, render_template, flash, request
-from fit_trek import app, db, bcrypt
-from fit_trek.forms import SignInForm, SignUpForm, itemForm
-from fit_trek.database import User, Post
+from fitness import app, db, bcrypt
+from fitness.forms import SignInForm, SignUpForm, itemForm
+from fitness.database import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-from fit_trek import nix
+from fitness import nix
 import json
 
 @app.shell_context_processor

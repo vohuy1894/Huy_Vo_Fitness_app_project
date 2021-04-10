@@ -17,4 +17,4 @@ def make_shell_context():
     return {'db': db, 'User': User}
 
 
-from fit_trek import routes
+from fitness import routes
