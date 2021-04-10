@@ -1,0 +1,30 @@
+{%extends "base.html"%}
+
+{% block content%}
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+    {{ form.item.label(class="form-control-label") }}
+        {% if form.item.errors %}
+        {{ form.item(class="form-control form-control-lg is-invalid") }}
+        <div class="alert alert-danger">
+            {% for error in form.item.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+            {{ form.item(class="form-control form-control-lg") }}
+        {% endif %} 
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info")}}
+        </div>
+
+<h1>    
+    {% for item in query%}
+        <p>{{item}}</p>
+        {%endfor%}
+</h1>
+
+{%endblock%}
+
