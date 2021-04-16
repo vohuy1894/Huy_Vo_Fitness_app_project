@@ -4,27 +4,51 @@
 <form action="" method="POST">
     {{ form.hidden_tag() }}
     <div class="form-group">
-    {{ form.item.label(class="form-control-label") }}
-        {% if form.item.errors %}
-        {{ form.item(class="form-control form-control-lg is-invalid") }}
+    {{ form.consumed.label(class="form-control-label") }}
+        {% if form.consumed.errors %}
+        {{ form.consumed(class="form-control form-control-lg is-invalid") }}
         <div class="alert alert-danger">
-            {% for error in form.item.errors %}
+            {% for error in form.consumed.errors %}
                 <span>{{ error }}</span>
             {% endfor %}
         </div>
         {% else %}
-            {{ form.item(class="form-control form-control-lg") }}
+            {{ form.consumed(class="form-control form-control-lg") }}
         {% endif %} 
-
+        </div>
+        <div class="form-group">
+            {{ form.burned.label(class="form-control-label") }}
+                {% if form.burned.errors %}
+                {{ form.burned(class="form-control form-control-lg is-invalid") }}
+                <div class="alert alert-danger">
+                    {% for error in form.burned.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form.burned(class="form-control form-control-lg") }}
+                {% endif %} 
+                
+                </div>
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-info")}}
         </div>
 
 <h1>    
-    {% for item in query%}
-        <p>{{item}}</p>
-        {%endfor%}
+    Calories consumed:
+    {{current_user.consumed}}
 </h1>
+<h1>
+    Calories burned:
+    {{current_user.burned}}
+</h1>
+<h1>
+    Total:
+    {{current_user.calories}}
+</h1>
+    
+    
+
 
 {%endblock%}
 

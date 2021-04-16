@@ -3,11 +3,13 @@ from fitness import db, login_manager
 from flask_login import UserMixin
 
 
+#Require user login to query data
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
+#User database model with id, first name, last name, email, password and so on
+#that store user information
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(60), nullable=False)
@@ -17,11 +19,16 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     post_attribute = db.relationship('Post', backref='author', lazy=True)
 
+    consumed = db.Column(db.Integer, nullable = True)
+    burned = db.Column(db.Integer, nullable = True)
+    calories = db.Column(db.Integer, nullable = True)
     def __repr__(self):
         return f"User('{self.fname}', '{self.lname}','{self.email}')"
         ##return f"User('{self.email}', '{self.image_file}')"
 
 
+#Posting database model with id, first name, last name, email, password and so on
+#that store user posts
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -31,3 +38,4 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.data_posted}')"
+
