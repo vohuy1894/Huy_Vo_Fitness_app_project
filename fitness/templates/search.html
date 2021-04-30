@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% block title %} 
+    <title>My Post</title>
+{% endblock %}
+
+{% block head %}
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('static/img/home-workout.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>WELCOME TO FITTREK</h1>
+            <span class="subheading">A Place For You To Be Fit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+<form method="GET" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                <div class="input-group">
+                <div class="form-outline">
+                  <input type="search" id="form1" class="form-control" name="q" placeholder="Search" size="100"/>
+                </div>
+              </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+  {% endblock %}

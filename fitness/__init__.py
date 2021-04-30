@@ -1,9 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from nutritionix import Nutritionix
-
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 #store database key to access
@@ -13,15 +12,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 #Create database
 db = SQLAlchemy(app)
 
+
 #Encrypt password
 bcrypt = Bcrypt(app)
 
 login_manager = LoginManager(app)
 nix = Nutritionix(app_id = 10908293,api_key = "65ec9bee4c82e455f41d19c810f88f89")
-
-@app.shell_context_processor
-def make_shell_context():
-    return {'db': db, 'User': User}
-
 
 from fitness import routes

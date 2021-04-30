@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -51,6 +52,12 @@
                 <a class="nav-link" href="home">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('mypost')}}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>My Post</span></a>
             </li>
 
             <!-- Divider -->
@@ -114,8 +121,8 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
@@ -317,7 +324,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Calories Burned (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ monthly_calories }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -332,7 +339,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Today Calories Burned</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -349,12 +356,12 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ achivement }}%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{ achivement }}%" aria-valuenow="{{  achivement  }}" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -373,7 +380,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Perks</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">250</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ perk }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -394,7 +401,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; FitTrek 2021</span>
                     </div>
                 </div>
             </footer>
@@ -445,7 +452,7 @@
     <script src="static/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="static/js/demo/chart-area-demo.js"></script>
+    <!--<script src="static/js/demo/chart-area-demo.js"></script>-->
     <script src="static/js/demo/chart-pie-demo.js"></script>
 
 </body>

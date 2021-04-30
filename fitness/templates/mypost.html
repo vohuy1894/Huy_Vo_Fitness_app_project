@@ -26,8 +26,9 @@
   <!-- Post Content -->
   <article>
     <div class="container">
-      <div class="row" >
-        <div class="col-lg-15 col-md-20 mx-auto" >
+      <div class="row">
+        <div class="col-lg-15 col-md-20 mx-auto">
+          {% for post in posts %}
               <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -41,6 +42,7 @@
                     <p style="font-size:15px">{{ post.content }}</p>
                   </div>
               </div>
+          {% endfor %}
         </div>
       </div>
     </div>

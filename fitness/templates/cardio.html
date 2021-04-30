@@ -15,9 +15,31 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <iframe width="530" height="355" src="https://www.youtube.com/embed/ml6cT4AZdqI">
+                                    <iframe width="530" height="400" src="https://www.youtube.com/embed/ml6cT4AZdqI">
                                      </iframe>
+                                     <div class="signup-form">
+                                        <form action="/cardio" method="POST">
+                                        {{ form.hidden_tag() }}
+                                        <div class="form-group">
+                                            {{ form.cardio_wo.label(class="form-control-label") }}
+                                            {% if form.cardio_wo.errors %}
+                                              {{ form.cardio_wo(class="form-control form-control-lg is-invalid") }}
+                                              <div class="alert alert-danger">
+                                                {% for error in form.cardio_wo.errors %}
+                                                  <span>{{ error }}</span>
+                                                {% endfor %}
+                                              </div>
+                                            {% else %}
+                                              {{ form.cardio_wo(class="form-control form-control-lg") }}
+                                            {% endif %}     
+                                        </div> 
+                                        <div class="form-group">
+                                        {{ form.submit(class="btn btn-outline-info")}}
+                                      </div> 
+                                      </form>
+                                     </div>
                                 </div>
+                              
                             </div>
                         </div>
 
@@ -30,8 +52,29 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <iframe width="530" height="355" src="https://www.youtube.com/embed/IvmaekQfKiw">
+                                    <iframe width="530" height="400" src="https://www.youtube.com/embed/IvmaekQfKiw">
                                      </iframe>
+                                     <div class="signup-form">
+                                        <form action="/cardio" method="POST">
+                                        {{ form.hidden_tag() }}
+                                        <div class="form-group">
+                                            {{ form.cardio_wo.label(class="form-control-label") }}
+                                            {% if form.cardio_wo.errors %}
+                                              {{ form.cardio_wo(class="form-control form-control-lg is-invalid") }}
+                                              <div class="alert alert-danger">
+                                                {% for error in form.cardio_wo.errors %}
+                                                  <span>{{ error }}</span>
+                                                {% endfor %}
+                                              </div>
+                                            {% else %}
+                                              {{ form.cardio_wo(class="form-control form-control-lg") }}
+                                            {% endif %}     
+                                        </div> 
+                                        <div class="form-group">
+                                        {{ form.submit(class="btn btn-outline-info")}}
+                                      </div> 
+                                      </form>
+                                     </div>
                                 </div>
                             </div>
                         </div>
@@ -45,8 +88,29 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <iframe width="530" height="355" src="https://www.youtube.com/embed/xqVBoyKXbsA">
+                                    <iframe width="530" height="400" src="https://www.youtube.com/embed/xqVBoyKXbsA">
                                      </iframe>
+                                     <div class="signup-form">
+                                        <form action="/cardio" method="POST">
+                                        {{ form.hidden_tag() }}
+                                        <div class="form-group">
+                                            {{ form.cardio_wo.label(class="form-control-label") }}
+                                            {% if form.cardio_wo.errors %}
+                                              {{ form.cardio_wo(class="form-control form-control-lg is-invalid") }}
+                                              <div class="alert alert-danger">
+                                                {% for error in form.cardio_wo.errors %}
+                                                  <span>{{ error }}</span>
+                                                {% endfor %}
+                                              </div>
+                                            {% else %}
+                                              {{ form.cardio_wo(class="form-control form-control-lg") }}
+                                            {% endif %}     
+                                        </div> 
+                                        <div class="form-group">
+                                        {{ form.submit(class="btn btn-outline-info")}}
+                                      </div> 
+                                      </form>
+                                     </div>
                                 </div>
                             </div>
                         </div>
