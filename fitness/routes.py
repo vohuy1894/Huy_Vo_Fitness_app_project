@@ -1,4 +1,3 @@
-from __future__ import print_function
 from flask import redirect, url_for, render_template, flash, request, session, make_response
 from fitness import app, db, bcrypt
 from fitness.forms import SignInForm, SignUpForm, itemForm, calorieForm, CalorieWorkoutForm, PostStructure, SearchForm
@@ -84,17 +83,19 @@ def new_post():
 # searching bar
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    query = request.args.get('q')
-    print("This is query", query)
-    if query:
-        return redirect((url_for('search_results', search_title=query)))
-    return render_template('search.html')
+    form = SearchForm()
+    q = request.args.get('q')
+    if q:
+        search_title = Post.query.filter(Post.title.contains(q))
+        return redirect((url_for('search_results', search_title=search_title)))
+    return render_template('search.html', form=form)
 
 
 @app.route('/search_results/<search_title>')
 def search_results(search_title):
-    search_title1 = Post.query.filter(Post.title.contains(search_title)).first()
-    return render_template('search_result.html', results=search_title1)
+    print(search_title)
+    results = Post.query.filter(Post.title == search_title).first()
+    return render_template('search_result.html', results=search_title)
 
 
 # Route for log out direction which is home page
@@ -206,6 +207,7 @@ def tracker():
             currentUser.calories += (currentUser.consumed - currentUser.burned)
 
         db.session.commit()
+        print(currentUser.consumed)
 
     return render_template("tracker.html", form=form)
 
@@ -256,6 +258,7 @@ def calculate_workout():
     now = date.today()
     day = now.strftime("%d")
     month = now.strftime("%m")
+    print(day)
     for item in get_all:
         # Get the daily calories
         day1 = item.date.strftime("%d")
