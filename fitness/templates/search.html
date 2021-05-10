@@ -22,20 +22,15 @@
 {% endblock %}
 
 {% block content %}
-<form method="GET" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
+<form action="/search" method="GET">
             <div class="form-group">
                 <div class="input-group">
                 <div class="form-outline">
                   <input type="search" id="form1" class="form-control" name="q" placeholder="Search" size="100"/>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="Submit">Submit</button>
                 </div>
-              </div>
+                </div>
             </div>
-        </fieldset>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
-        </div>
     </form>
 
   {% endblock %}

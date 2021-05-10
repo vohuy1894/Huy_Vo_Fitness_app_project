@@ -1,3 +1,4 @@
+from __future__ import print_function
 from flask import redirect, url_for, render_template, flash, request, session, make_response
 from fitness import app, db, bcrypt
 from fitness.forms import SignInForm, SignUpForm, itemForm, calorieForm, CalorieWorkoutForm, PostStructure, SearchForm
@@ -83,19 +84,17 @@ def new_post():
 # searching bar
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    form = SearchForm()
-    q = request.args.get('q')
-    if q:
-        search_title = Post.query.filter(Post.title.contains(q))
-        return redirect((url_for('search_results', search_title=search_title)))
-    return render_template('search.html', form=form)
+    query = request.args.get('q')
+    print("This is query", query)
+    if query:
+        return redirect((url_for('search_results', search_title=query)))
+    return render_template('search.html')
 
 
 @app.route('/search_results/<search_title>')
 def search_results(search_title):
-    print(search_title)
-    results = Post.query.filter(Post.title == search_title).first()
-    return render_template('search_result.html', results=search_title)
+    search_title1 = Post.query.filter(Post.title.contains(search_title)).first()
+    return render_template('search_result.html', results=search_title1)
 
 
 # Route for log out direction which is home page
@@ -169,49 +168,6 @@ def supplement():
                            achivement=achivement)
 
 
-# Route for food nutrition tracking
-@app.route("/tracker", methods=["GET", "POST"])
-@login_required
-# Tracking function form
-def tracker():
-    # query = nix.search().nxql(
-    # filters={
-    #   "nf_calories":{
-    #      "lte": 500
-    # }
-    # },
-    # fields = ["item_name","item_id","nf_calories"]
-    # ).json()
-    """
-        form = itemForm()
-        if form.validate_on_submit(): 
-            searchItem = form.item.data
-            query = nix.search(searchItem, results="0:1").json()
-            if 'hits' in query :
-                objId = query['hits'][0]['_id']
-                info = nix.item(id=objId).json()
-            
-                filterInfo = "Name: " +str(info['item_name']) + "\ncalories: " + str(info['nf_calories']) + "\ncalories from fat: " + str(info['nf_calories_from_fat']) + "\ntotal fat(grams): " + str(info["nf_total_fat"]) + "\nsaturated fat(grams): " + str(info['nf_saturated_fat']) + "\nserving size(grams): " + str(info['nf_serving_weight_grams'])
-                filterInfo = filterInfo.split('\n')
-                return render_template("tracker.html", form = form, query = filterInfo)
-        """
-    form = calorieForm()
-    if form.validate_on_submit():
-        currentUser = User.query.get(id=session['id'])
-        currentData = UserData.query.get(session[''])
-        currentUser.consumed = int(form.consumed.data)
-        currentUser.burned = int(form.burned.data)
-        if (currentUser.consumed - currentUser.burned) < 0 or currentUser.calories < 0:
-            currentUser.calories = 0
-        else:
-            currentUser.calories += (currentUser.consumed - currentUser.burned)
-
-        db.session.commit()
-        print(currentUser.consumed)
-
-    return render_template("tracker.html", form=form)
-
-
 # Sign up function for user with fields
 # and store them database
 @app.route('/signup', methods=['GET', 'POST'])
@@ -258,7 +214,6 @@ def calculate_workout():
     now = date.today()
     day = now.strftime("%d")
     month = now.strftime("%m")
-    print(day)
     for item in get_all:
         # Get the daily calories
         day1 = item.date.strftime("%d")
